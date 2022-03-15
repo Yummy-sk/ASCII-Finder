@@ -1,0 +1,19 @@
+h1 {
+  color: #333;
+  font-family: 'Lucida Grande', Verdana, Helvetica, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 40.32px;
+  margin: 0 0 0.3rem;
+  text-align: center;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

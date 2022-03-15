@@ -1,5 +1,19 @@
-@import './font.css';
 @import './reset.css';
+@import './font.css';
+@import './Main/index.css';
+@import './Input/index.css';
+
+:root {
+  --gray1: #333;
+  --gray2: #4f4f4f;
+  --gray3: #828282;
+  --gray4: #bdbdbd;
+  --gray5: #e0e0e0;
+  --gray6: #f2f2f2;
+  --gray7: #f9f9f9;
+  --red: #eb5757;
+  --blue: #1a79ff;
+}
 
 body {
   background: #fdfdfd;
