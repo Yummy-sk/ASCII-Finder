@@ -1,6 +1,6 @@
 @import './font.css';
 @import './reset.css';
 
-p {
-  color: red;
+body {
+  background: #fdfdfd;
 }
