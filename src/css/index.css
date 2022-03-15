@@ -2,6 +2,7 @@
 @import './font.css';
 @import './Main/index.css';
 @import './Input/index.css';
+@import './DropDown/index.css';
 
 :root {
   --gray1: #333;
@@ -11,6 +12,7 @@
   --gray5: #e0e0e0;
   --gray6: #f2f2f2;
   --gray7: #f9f9f9;
+  --gray8: #ced4da;
   --red: #eb5757;
   --blue: #1a79ff;
 }
