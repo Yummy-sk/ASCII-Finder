@@ -1,5 +1,4 @@
-import { _fetch } from './utils';
+import { $ } from './utils';
+import DropDown from './components/DropDown';
 
-const temp = _fetch();
-
-console.log(temp);
+DropDown($('.dropdown'));

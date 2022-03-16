@@ -1,2 +1,2 @@
-export const $ = (selector: string) => document.querySelector(selector);
-export const $$ = (selector: string) => document.querySelectorAll(selector);
+export const $ = (selector: string): HTMLElement => document.querySelector(selector) as HTMLElement;
+export const $$ = (selector: string): NodeListOf<Element> => document.querySelectorAll(selector) as NodeListOf<Element>;
