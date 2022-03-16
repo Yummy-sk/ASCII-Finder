@@ -1,2 +1,2 @@
 export { IState, IAction, IReducerProps } from './reducer';
-export { IStoreProps } from './store';
+export { IStore, IStoreProps } from './store';
