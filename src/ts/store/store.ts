@@ -5,9 +5,8 @@ export function createStore(reducer: (state: IState, action: IAction) => object)
   const handler: Array<() => void> = [];
 
   function dispatch(action: IAction) {
-    console.log('ds');
     state = reducer(state, action);
-    handler.forEach((listener) => listener());
+    handler.forEach((listener) => listener);
   }
 
   function getState() {
@@ -15,8 +14,7 @@ export function createStore(reducer: (state: IState, action: IAction) => object)
   }
 
   function subscribe(listener: any) {
-    listener();
-    handler.push(listener);
+    handler.push(listener());
   }
 
   return {

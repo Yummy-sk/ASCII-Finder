@@ -13,8 +13,6 @@ export default function DropDown(store: IStore) {
   });
 
   $dropdownList.addEventListener('click', (e: any) => {
-    e.preventDefault();
-
     const $cur = e.target;
     const $parent = $cur.parentElement;
     const $prev = $('.selected');
@@ -27,7 +25,6 @@ export default function DropDown(store: IStore) {
     }
 
     $parent.classList.toggle('selected');
-
     dispatch(setOption(value));
   });
 }
