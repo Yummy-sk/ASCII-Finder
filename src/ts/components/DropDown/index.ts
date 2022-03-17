@@ -3,6 +3,7 @@ import { IStore } from '../../types/store';
 import { setOption, dispatch, getState } from '../../store';
 
 export function DropDown() {
+  const $input = $('input');
   const $dropdownWrapper = $('.dropdown-wrapper');
   const $dropdownMain = $('.dropdown-main');
   const $dropdownList = $('.dropdown-list');
@@ -27,7 +28,8 @@ export function DropDown() {
 
     if (value) {
       dispatch(setOption(value));
-      console.log(getState());
+      $input.removeAttribute('disabled');
+      $input.classList.remove('error');
     }
 
     $dropdownWrapper.classList.toggle('open', false);

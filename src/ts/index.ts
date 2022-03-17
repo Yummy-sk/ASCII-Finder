@@ -6,6 +6,3 @@ import { dispatch, getData, getState } from './store';
   DropDown();
   Input();
 })();
-
-// store.subscribe(() => DropDown(store));
-// store.subscribe(() => Input(store));
