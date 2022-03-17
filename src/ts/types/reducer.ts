@@ -4,7 +4,7 @@ export interface IState {
 }
 
 export interface IAction {
-  type?: string;
+  type: string;
   payload: {
     option?: string;
     text?: string;

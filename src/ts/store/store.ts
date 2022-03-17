@@ -1,25 +1,15 @@
-import { IState, IAction } from '../types';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { fetch } from './fetch';
+import { form } from './form';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import ReduxThunk from 'redux-thunk';
 
-export function createStore(reducer: (state: IState, action: IAction) => object) {
-  let state = {};
-  const handler: Array<() => void> = [];
+const rootReducer = combineReducers({
+  fetch,
+  form,
+});
 
-  function dispatch(action: IAction) {
-    state = reducer(state, action);
-    handler.forEach((listener) => listener);
-  }
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
-  function getState() {
-    return state;
-  }
-
-  function subscribe(listener: any) {
-    handler.push(listener());
-  }
-
-  return {
-    dispatch,
-    getState,
-    subscribe,
-  };
-}
+export const getState = () => store.getState();
+export const dispatch = (action: any) => store.dispatch(action);

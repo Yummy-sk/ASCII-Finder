@@ -1,6 +1,11 @@
-import { createStore, reducer } from './store';
-import DropDown from './components/DropDown';
+import { DropDown, Input } from './components';
+import { dispatch, getData, getState } from './store';
 
-const store = createStore(reducer);
+(async function init() {
+  await dispatch(getData());
+  DropDown();
+  Input();
+})();
 
-store.subscribe(() => DropDown(store));
+// store.subscribe(() => DropDown(store));
+// store.subscribe(() => Input(store));

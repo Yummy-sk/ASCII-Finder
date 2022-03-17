@@ -1,15 +1,14 @@
 import { $ } from '../../utils';
 import { IStore } from '../../types/store';
-import { setOption } from '../../store/reducer';
+import { setOption, dispatch, getState } from '../../store';
 
-export default function DropDown(store: IStore) {
-  const { dispatch, getState } = store;
+export function DropDown() {
   const $dropdownWrapper = $('.dropdown-wrapper');
   const $dropdownMain = $('.dropdown-main');
   const $dropdownList = $('.dropdown-list');
 
-  $dropdownWrapper.addEventListener('click', (e: any) => {
-    e.currentTarget.classList.toggle('open');
+  $dropdownMain.addEventListener('click', () => {
+    $dropdownWrapper.classList.toggle('open');
   });
 
   $dropdownList.addEventListener('click', (e: any) => {
@@ -25,6 +24,17 @@ export default function DropDown(store: IStore) {
     }
 
     $parent.classList.toggle('selected');
-    dispatch(setOption(value));
+
+    if (value) {
+      dispatch(setOption(value));
+      console.log(getState());
+    }
+
+    $dropdownWrapper.classList.toggle('open', false);
+  });
+
+  $dropdownWrapper.addEventListener('blur', () => {
+    console.log('ds');
+    // $dropdownWrapper.classList.toggle('open');
   });
 }
