@@ -1,5 +1,15 @@
-import { IStore } from '../../types/store';
+import { setText, dispatch, getState } from '../../store';
+import { $ } from '../../utils';
 
 export function Input() {
-  // console.log(store.getState());
+  const $input = $('input');
+
+  $input.addEventListener('input', (e: any) => {
+    const value = e.target.value;
+
+    if (value) {
+      dispatch(setText(value));
+      console.log(getState());
+    }
+  });
 }
