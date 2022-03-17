@@ -17,6 +17,7 @@ export function form(state = initialState, action: IAction): IState {
     case SET_OPTION:
       return { ...state, option: action.payload as string };
     case SET_TEXT:
+      console.log('ds');
       return { ...state, text: action.payload as string };
     default:
       return state;

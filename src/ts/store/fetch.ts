@@ -1,26 +1,10 @@
 import { _fetch } from '../utils';
-
-interface IData {
-  DEC: string;
-  OCT: string;
-  HEX: string;
-  BIN: string;
-  Symbol: string | null;
-  'HTML Number': string | null;
-  'HTML Name': string | null;
-  Description: string | null;
-}
-
-interface IFetchAction {
-  type: string;
-  payload?: Array<IData>;
-  error: boolean;
-  loading: boolean;
-}
+import { IData, IFetchAction } from '../types';
 
 const GET_DATA = 'fetch/GET_DATA';
 const GET_DATA_SUCCESS = 'fetch/GET_DATA_SUCCESS';
 const GET_DATA_FAILURE = 'fetch/GET_DATA_FAILURE';
+const GET_DATA_FILTER = 'fetch/GET_DATA_FILTER';
 
 export const getData = () => async (dispatch: any) => {
   dispatch({ type: GET_DATA });
@@ -33,10 +17,13 @@ export const getData = () => async (dispatch: any) => {
   }
 };
 
+export const filterData = (filtered: IData | null) => ({ type: GET_DATA_FILTER, payload: filtered });
+
 const initialState = {
   loading: false,
   data: null,
   error: null,
+  filtered: null,
 };
 
 export function fetch(state = initialState, action: IFetchAction) {
@@ -47,6 +34,7 @@ export function fetch(state = initialState, action: IFetchAction) {
         loading: true,
         data: null,
         error: null,
+        filtered: null,
       };
     case GET_DATA_SUCCESS:
       return {
@@ -54,6 +42,7 @@ export function fetch(state = initialState, action: IFetchAction) {
         loading: false,
         data: action.payload,
         error: null,
+        filtered: null,
       };
     case GET_DATA_FAILURE:
       return {
@@ -61,6 +50,15 @@ export function fetch(state = initialState, action: IFetchAction) {
         loading: false,
         data: null,
         error: null,
+        filtered: null,
+      };
+    case GET_DATA_FILTER:
+      console.log(action.payload);
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        filtered: action.payload,
       };
     default:
       return state;

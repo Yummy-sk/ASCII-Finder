@@ -1,11 +1,28 @@
-import { setText, dispatch, getState } from '../../store';
+import { setText, dispatch, getState, filterData } from '../../store';
 import { $ } from '../../utils';
+import { IData } from '../../types';
+
+function changeState(value: string, data: Array<IData>) {
+  const filtered = data.filter((data: any) => {
+    for (let i in data) {
+      if (data[i] === value) return true;
+    }
+  });
+
+  if (filtered) dispatch(filterData(filtered[0]));
+  else dispatch(filterData(null));
+
+  dispatch(setText(value));
+}
 
 export function Input() {
   const $input = $('input');
 
   $input.addEventListener('input', (e: any) => {
-    const option = getState().form.option;
+    const {
+      fetch: { data },
+      form: { option },
+    } = getState();
     const value = e.target.value;
 
     if (!option) {
@@ -17,7 +34,7 @@ export function Input() {
 
     if (value && option) {
       e.target.setAttribute('placeholder', 'Please Input ASCII Code');
-      dispatch(setText(value));
+      changeState(value, data);
     }
   });
 }
