@@ -3,6 +3,9 @@
 @import './Main/index.css';
 @import './Input/index.css';
 @import './DropDown/index.css';
+@import './Result/index.css';
+@import './Result/index.css';
+@import './NotFound/index.css';
 
 :root {
   --gray1: #333;

@@ -1,6 +1,7 @@
 import { setText, dispatch, getState, filterData } from '../../store';
 import { $ } from '../../utils';
 import { IData } from '../../types';
+import { fetch } from '../../store/fetch';
 
 function changeState(value: string, data: Array<IData>) {
   const filtered = data.filter((data: any) => {
@@ -17,6 +18,8 @@ function changeState(value: string, data: Array<IData>) {
 
 export function Input() {
   const $input = $('input');
+  const $resultWrapper = $('.result-wrapper');
+  const $notFound = $('.not-found');
 
   $input.addEventListener('input', (e: any) => {
     const {
@@ -24,6 +27,8 @@ export function Input() {
       form: { option },
     } = getState();
     const value = e.target.value;
+    $resultWrapper.classList.remove('show');
+    $notFound.style.display = 'none';
 
     if (!option) {
       e.target.value = '';
@@ -35,6 +40,36 @@ export function Input() {
     if (value && option) {
       e.target.setAttribute('placeholder', 'Please Input ASCII Code');
       changeState(value, data);
+
+      const {
+        fetch: { filtered },
+      } = getState();
+
+      if (filtered) {
+        let html = '';
+
+        for (let filter in filtered as IData) {
+          if (filter !== 'Description' && filtered[filter]) {
+            html += `
+              <div class="result-box">
+                <h3>${filter}</h3>
+                <p>${filtered[filter]}</p>
+              </div>
+            `;
+          }
+        }
+
+        $resultWrapper.classList.add('show');
+        $resultWrapper.innerHTML = html;
+
+        return;
+      }
+
+      if (!filtered && value !== '') {
+        $notFound.style.display = 'block';
+
+        return;
+      }
     }
   });
 }

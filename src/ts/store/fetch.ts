@@ -53,7 +53,6 @@ export function fetch(state = initialState, action: IFetchAction) {
         filtered: null,
       };
     case GET_DATA_FILTER:
-      console.log(action.payload);
       return {
         ...state,
         loading: false,
